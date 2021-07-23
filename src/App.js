@@ -1,23 +1,30 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from "react";
+import "./App.css";
+import "semantic-ui-css/semantic.min.css";
+import SearchBox from "./Components/SearchBox";
+import SearchResultContainer from "./Components/SearchResultContainer";
 
 function App() {
+  const [results, setResults] = useState([]);
+
+  const search = async (value) => {
+    const response = await fetch(`https://api.tvmaze.com/search/shows?q=${value}`);
+    const series = await response.json();
+    setResults(series);
+  };
+
+  const onSearch = (value) => {
+    search(value);
+  };
+  
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <div style={{background: "rgb(76 77 78)"}}>
+        <SearchBox onSearch={onSearch}></SearchBox>
+      </div>
+      <div>
+        <SearchResultContainer results={results}></SearchResultContainer>
+      </div>
     </div>
   );
 }
