@@ -1,4 +1,5 @@
 # TV Series Search App
+![tv-series-react-app](https://user-images.githubusercontent.com/44985367/127343314-d7d528b4-859c-4547-904e-e03878b04664.JPG)
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
